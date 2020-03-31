@@ -277,6 +277,61 @@ public class DataUtil {
 	}
 	
 	
+	
+	/**
+	 *
+	 * @Title: getDateByBefore
+	 * @Description: 返回昨天的时间
+	 * @return
+	 * @return: Date
+	 */
+	public static Date getDateByBefore() {
+		// 用系统时间初始化 Calender
+		Calendar c = Calendar.getInstance();
+		// 让系统时间减去 1 天
+		c.add(Calendar.DAY_OF_MONTH, -1);
+		return c.getTime();
+	}
+	
+	
+	
+	/**
+     * 
+     * @Title: randomDate 
+     * @Description: 随机返回一个在start--end 之间的日期
+     * @param start
+     * @param end
+     * @return
+     * @return: Date
+     */
+	public static Date randomDate(Date start,Date end) {
+		//获取开始日期的毫秒数
+		long t1 = start.getTime();
+		//获取结束日期的毫秒数
+		long t2 = end.getTime();
+		
+		long t =(long) ((Math.random() * (t2-t1)+1) +t1);
+		
+		return new Date(t);
+	}
+	
+	/**
+	 * @Title: getRandomDate   
+	 * @Description: 获取随机时间 
+	 * @param: @param date1
+	 * @param: @param date2
+	 * @param: @return      
+	 * @return: Date      
+	 * @throws
+	 */
+	public static Date getRandomDate(Date date1,Date date2) {
+		Long randomLong = Math.abs(date1.getTime()-date2.getTime());
+		long random = (long) (randomLong*Math.random());
+		long newDateLong = compare(date1, date2)==1?date2.getTime()+random:date1.getTime()+random;
+		return new Date(newDateLong);
+	}
+	
+	
 	public static void main(String[] args) {
 		
 		System.out.println(format(getLastDayOfMonth("2020-02-06 12:33:33"), "yyyy-MM-dd HH:mm:ss"));

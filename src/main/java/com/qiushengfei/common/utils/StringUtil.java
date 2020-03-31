@@ -1,6 +1,7 @@
 package com.qiushengfei.common.utils;
 
 import java.io.UnsupportedEncodingException;
+import java.net.URL;
 import java.util.Random;
 
 /**
@@ -9,6 +10,31 @@ import java.util.Random;
  * @date:   2020年1月3日 上午9:08:16
  */
 public class StringUtil {
+	
+	
+	/**
+	 * 效验参数是否为Ϊurl
+	 * @param param
+	 * @return
+	 */
+	public static boolean isHttpUrl(String param) {
+		 URL url;  
+		 try {  
+	         url = new URL(param);
+	        url.openStream();  
+	         return true; //url合法
+	    } catch (Exception e1) {  
+	         System.out.println("连接打不开!");  
+	       
+	    }  
+		 return false;
+		
+	}
+	
+	
+	
+	
+	
 	/**
 	 * @Title: isNull   
 	 * @Description: 判断字符串是否为空   

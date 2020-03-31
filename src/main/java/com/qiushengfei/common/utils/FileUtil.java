@@ -4,6 +4,8 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -157,4 +159,41 @@ public class FileUtil {
 	public static List<String> readTextFileToList(String pathname){
 		return readTextFileToList(new File(pathname));
 	}
+	
+	/**
+	 * bobo文件
+	 * @param inputStream
+	 * @param charset
+	 * @return
+	 */
+	//读取InputStream对象，把其内容放入集合中
+		public static List<String> readFile2List(InputStream in){
+			return readFile2List(in,"utf-8");
+		}
+	
+	public static List<String> readFile2List(InputStream inputStream, String charset)
+    {
+   List<String> list = new ArrayList<String>();
+
+   BufferedReader br = null;
+   try {
+     br = new BufferedReader(new InputStreamReader(inputStream, charset));
+
+     String s = null;
+     while ((s = br.readLine()) != null) {
+       list.add(s);
+     }
+   } catch (Exception e) {
+		e.printStackTrace();
+	}
+
+   return list;
+ }
+	
+	
+	
+	
+	
+	
+	
 }
